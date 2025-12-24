@@ -47,18 +47,22 @@ const Explorer = () => {
 
   return (
     <PageShell
-      tools={[
+      headerTools={[
         {
           label: 'Toggle View',
           action: () =>
             setViewMode(viewMode === 'graph3d' ? 'tree' : 'graph3d'),
         },
-        ...incomingEntries.map((entry) => ({
-          label: `${entry.displayName} (${entry.attentionPct.toFixed(1)}%)`,
-          action: () => setPeekGraphKey(entry.pubkey),
-          key: entry.pubkey,
-        })),
       ]}
+      tools={
+        viewMode === 'tree'
+          ? incomingEntries.map((entry) => ({
+              label: `${entry.displayName} (${entry.attentionPct.toFixed(1)}%)`,
+              action: () => setPeekGraphKey(entry.pubkey),
+              key: entry.pubkey,
+            }))
+          : []
+      }
       renderBody={() => (
         <>
           {!!whichKey && (

@@ -27,9 +27,15 @@ interface Props {
   onDismissModal?: () => void;
   renderBody: () => JSX.Element;
   tools?: ToolBarButton[];
+  headerTools?: ToolBarButton[];
 }
 
-export const PageShell = ({ onDismissModal, renderBody, tools }: Props) => {
+export const PageShell = ({
+  onDismissModal,
+  renderBody,
+  tools,
+  headerTools,
+}: Props) => {
   const { selectedDirectory, setSelectedDirectory } = useContext(AppContext);
 
   const [present, dismiss] = useIonModal(Navigator, {
@@ -73,6 +79,16 @@ export const PageShell = ({ onDismissModal, renderBody, tools }: Props) => {
               </IonChip>
             )}
           </IonButtons>
+
+          {!!headerTools?.length && (
+            <IonButtons slot="end">
+              {headerTools.map((tool) => (
+                <IonButton key={tool.key ?? tool.label} onClick={tool.action}>
+                  {tool.renderIcon ? tool.renderIcon() : tool.label}
+                </IonButton>
+              ))}
+            </IonButtons>
+          )}
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
