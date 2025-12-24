@@ -73,19 +73,22 @@ export const PageShell = ({ onDismissModal, renderBody, tools }: Props) => {
               </IonChip>
             )}
           </IonButtons>
-
-          {!!tools?.length && (
-            <IonButtons slot="end">
+        </IonToolbar>
+      </IonHeader>
+      <IonContent fullscreen>
+        {!!tools?.length && (
+          <IonToolbar>
+            <IonButtons slot="start">
               {tools.map((tool) => (
                 <IonButton key={tool.key ?? tool.label} onClick={tool.action}>
                   {tool.renderIcon ? tool.renderIcon() : tool.label}
                 </IonButton>
               ))}
             </IonButtons>
-          )}
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>{renderBody()}</IonContent>
+          </IonToolbar>
+        )}
+        {renderBody()}
+      </IonContent>
     </IonPage>
   );
 };
