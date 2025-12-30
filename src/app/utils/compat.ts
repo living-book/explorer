@@ -3,5 +3,5 @@ export const shortenB64 = (value: string = '') => {
     return value.substring(0, 1);
   }
 
-  return value.replace(/0+=?$/g, '').substring(0, 25);
+  return value.replace(/0+=?$/g, '');
 };

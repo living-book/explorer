@@ -51,6 +51,7 @@ const Explorer = () => {
     <PageShell
       headerTools={[
         {
+          label: "",
           action: () =>
             setViewMode(viewMode === 'graph3d' ? 'tree' : 'graph3d'),
           key: 'toggle-view',
